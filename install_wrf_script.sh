@@ -1,13 +1,20 @@
 #!/bin/bash
+
+# Ask for sudo 
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 # COMPILERS INSTALL
-apt-get update
-apt-get install build-essential
-apt install csh gawk
-apt-get install perl
-apt-get install gfortran
-apt-get install build-essentials
-apt-get install autotools
-apt-get install autoconf
+sudo apt-get -y update
+apt-get -y install build-essential
+apt -y install csh gawk
+apt-get -y install perl
+apt-get -y install gfortran
+apt-get -y install build-essentials
+apt-get -y install autotools
+apt-get -y install autoconf
 
 # LOAD Environment Variables
 source WRF_ENV_VARIABLES.sh
@@ -25,7 +32,7 @@ export NETCDF=$NETCDF
 
 # Download WRF Source code from repo
 cd $HOME
-git clone -b master https://github.com/wrf-model/WRF.git
+# git clone -b master https://github.com/wrf-model/WRF.git
 cd WRF/
 
 
